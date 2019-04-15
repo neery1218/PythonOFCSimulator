@@ -142,6 +142,35 @@ def T_top_or_mid():
         their_hand=their_hand,
         dead_cards=dead_cards,
         candidate_decisions=candidate_decisions,
+        num_epochs=100
+    )
+
+    for placements, ev in placements_to_ev.items():
+        s = "{} {} {} {}".format(placements[0].card, placements[0].row, placements[1].card, placements[1].row)
+        print("{} : {}".format(s, ev))
+
+def three_outer_mid_or_ace():
+    our_hand = _create_ofc_hand(
+        "Ks Kd Qh",
+        "8c 4s",
+        "Jd 7s 7c 7d"
+    )
+    their_hand = _create_ofc_hand(
+        "Qc Qd 4c",
+        "Td 9s 6s Ac",
+        "Ah Jh 9h 3h"
+    )
+    dead_cards = parse_cards(["Th", "6c"])
+
+    candidate_decisions = [
+        "7h bot As mid 5c dead",
+        "7h bot 5c mid As dead"
+    ]
+    placements_to_ev = decision_finder(
+        our_hand=our_hand,
+        their_hand=their_hand,
+        dead_cards=dead_cards,
+        candidate_decisions=candidate_decisions,
         num_epochs=10000
     )
 
@@ -149,10 +178,9 @@ def T_top_or_mid():
         s = "{} {} {} {}".format(placements[0].card, placements[0].row, placements[1].card, placements[1].row)
         print("{} : {}".format(s, ev))
 
-
 if __name__ == '__main__':
-    # conflicting_draw_flush_q()
-    # freeroll_or_88_top()
+    #conflicting_draw_flush_q()
     # pair_or_q_top()
-    T_top_or_mid()
+    #T_top_or_mid()
+    three_outer_mid_or_ace()
 

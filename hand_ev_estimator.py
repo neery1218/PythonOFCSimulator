@@ -4,6 +4,8 @@ from deck import Deck
 from ofc_hand import OfcHand
 from ofc_scoring import Row
 from collections import namedtuple
+from collections import defaultdict
+from deck import cards_to_str
 
 
 NUM_EPOCHS = 10000
@@ -46,12 +48,11 @@ class HandEvEstimator:
     def estimate(self, num_epochs=NUM_EPOCHS):
         running_sum = 0
         iterations = 0
+        # points_freq = defaultdict(lambda: defaultdict(int))
         num_our_cards = DRAWS_TO_CARDS[self.our_draws_remaining]
         print("Using {} cards".format(num_our_cards))
         num_their_cards = DRAWS_TO_CARDS[self.their_draws_remaining]
         for _ in range(num_epochs):
-            if iterations % 100 == 0:
-                print(iterations)
             cards = self.deck.choose(num_our_cards + num_their_cards)
             our_cards = cards[:num_our_cards]
             their_cards = cards[num_our_cards:]
@@ -61,6 +62,7 @@ class HandEvEstimator:
             their_completed_hand = self.arrange_best_hand(
                 self.their_ofc_hand, their_cards)
             points = our_completed_hand.calculate_points(their_completed_hand)
+            # points_freq[points][cards_to_str(our_cards)] += 1
 
             iterations += 1
             running_sum += points

@@ -20,7 +20,7 @@ class PokerHand(Enum):
 def hand_strength(hand):
     freq = defaultdict(int)
     for card in hand:
-        freq[card.rank] += 1
+        freq[card.rank.value] += 1
     sorted_values = sorted(freq.values())
 
     if all(v == 1 for v in sorted_values): # high card, straight, flush

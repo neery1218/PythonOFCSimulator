@@ -50,8 +50,9 @@ class OfcRow:
                                  PokerHand.TWO_PAIR, PokerHand.FULL_HOUSE, PokerHand.QUADS]:
                 self_freq = defaultdict(int)
                 other_freq = defaultdict(int)
-                for self_c, other_c in zip(self.row, other.row):
+                for self_c in self.row:
                     self_freq[self_c.rank] += 1
+                for other_c in other.row:
                     other_freq[other_c.rank] += 1
 
                 self_ranks = [x[0].value for x in sorted(self_freq.items(), key=lambda x: x[1], reverse=True)]

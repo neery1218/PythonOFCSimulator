@@ -69,7 +69,7 @@ def card_to_str(card):
 
 
 def cards_to_str(cards):
-    return " ".join([card_to_str(c) for c in cards])
+    return "".join([card_to_str(c) for c in cards])
 
 
 class Deck:

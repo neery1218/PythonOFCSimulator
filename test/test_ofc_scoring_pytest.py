@@ -41,10 +41,10 @@ def test_middle(hand, royalties):
     (parse_cards(["Qc", "Qd", "Ad"]), 7 + 7.5),  # upper bound royalty pair
     (parse_cards(["Kc", "Kd", "Ad"]), 8 + 7.5),  # upper bound royalty pair
     (parse_cards(["Ac", "Kd", "Ad"]), 9 + 7.5),  # upper bound royalty pair
-    (parse_cards(["2c", "2d", "2h"]), 10),  # trips
-    (parse_cards(["6c", "6d", "6h"]), 14),  # trips
-    (parse_cards(["Kc", "Kd", "Kh"]), 21),  # trips
-    (parse_cards(["Ac", "Ad", "Ah"]), 22),  # trips
+    (parse_cards(["2c", "2d", "2h"]), 10 + 7.5),  # trips
+    (parse_cards(["6c", "6d", "6h"]), 14 + 7.5),  # trips
+    (parse_cards(["Kc", "Kd", "Kh"]), 21 + 7.5),  # trips
+    (parse_cards(["Ac", "Ad", "Ah"]), 22 + 7.5),  # trips
 ])
 def test_top(hand, royalties):
     assert ofc_scoring.royalties(hand, ofc_scoring.Row.TOP) == royalties
